@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: multi-agent-research-system
+    runtime: docker
+    plan: free
+    envVars:
+      - key: MODEL_NAME
+        value: groq/llama-3.3-70b-versatile
+      - key: GROQ_API_KEY
+        sync: false
+    healthCheckPath: /api/health

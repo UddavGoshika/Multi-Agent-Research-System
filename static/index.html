@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Multi-Agent Research System</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">◆</span>
+    <span class="brand-text">AGENT<span class="brand-accent">DESK</span></span>
+  </div>
+  <div class="topbar-meta">
+    <span id="model-badge" class="badge">model: —</span>
+    <span class="badge badge-live" id="status-badge">idle</span>
+  </div>
+</header>
+
+<main class="layout">
+
+  <section class="control-panel">
+    <h1>Multi-agent research pipeline</h1>
+    <p class="sub">
+      Four agents — <b>Planner</b>, <b>Researcher</b>, <b>Analyst</b>, <b>Writer</b> —
+      run in sequence, searching the live web and handing off structured
+      context to each other. Watch them work below.
+    </p>
+
+    <form id="research-form">
+      <label for="topic">Research topic</label>
+      <input
+        id="topic"
+        type="text"
+        placeholder="e.g. environmental impact of lithium-ion battery recycling"
+        autocomplete="off"
+        required
+      />
+      <button type="submit" id="submit-btn">Run agents</button>
+    </form>
+
+    <div class="stations" id="stations">
+      <div class="station" data-agent="planner">
+        <div class="station-index">01</div>
+        <div class="station-body">
+          <div class="station-name">Planner</div>
+          <div class="station-role">Breaks the topic into sub-questions</div>
+          <div class="station-status" data-role="status">pending</div>
+        </div>
+      </div>
+      <div class="station" data-agent="researcher">
+        <div class="station-index">02</div>
+        <div class="station-body">
+          <div class="station-name">Researcher</div>
+          <div class="station-role">Searches the web per sub-question</div>
+          <div class="station-status" data-role="status">pending</div>
+        </div>
+      </div>
+      <div class="station" data-agent="analyst">
+        <div class="station-index">03</div>
+        <div class="station-body">
+          <div class="station-name">Analyst</div>
+          <div class="station-role">Synthesizes findings into insights</div>
+          <div class="station-status" data-role="status">pending</div>
+        </div>
+      </div>
+      <div class="station" data-agent="writer">
+        <div class="station-index">04</div>
+        <div class="station-body">
+          <div class="station-name">Writer</div>
+          <div class="station-role">Drafts the final cited report</div>
+          <div class="station-status" data-role="status">pending</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="output-panel">
+    <div class="output-tabs">
+      <button class="tab-btn active" data-tab="log">Live log</button>
+      <button class="tab-btn" data-tab="report">Report</button>
+    </div>
+
+    <div class="tab-content" id="tab-log">
+      <div class="log" id="log"></div>
+    </div>
+
+    <div class="tab-content hidden" id="tab-report">
+      <div class="report" id="report">
+        <p class="placeholder">The final report will appear here once the writer agent finishes.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  Built with FastAPI + SSE · LLM-agnostic via litellm · free DuckDuckGo search — no paid keys required to try it
+</footer>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
